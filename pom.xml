@@ -35,12 +35,12 @@
 	<distributionManagement>
 		 <snapshotRepository>
 		    <id>nexus</id>
-		    <url>http://104.197.35.88:8081/repository/Non-Prod_Sanpshots_war/</url>
+		    <url>http://35.226.10.66:8081/repository/Non-Prod_Sanpshots_war/</url>
 		 </snapshotRepository>
 		
 		<repository>
 		    <id>nexus</id>
-		    <url>http://104.197.35.88:8081/repository/Prod_Release_War/</url>
+		    <url>http://35.226.10.66:8081/repository/Prod_Release_War/</url>
 		</repository>
   	</distributionManagement>
 	
