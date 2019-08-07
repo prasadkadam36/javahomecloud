@@ -6,10 +6,14 @@ node{
     def mvnHome = tool name: 'apache-maven-3.5.4', type: 'maven'
      sh "${mvnHome}/bin/mvn package"
    }
-    stage('Email-Notification')
-  {
-    mail bcc: '', body: 'Test', cc: '', from: '', replyTo: '', subject: 'Test', to: 'prasadforplaystore@gmail.com'
-  }
+  stage('Code-Analysis'){
+    def mvnHome = tool name: 'apache-maven-3.5.4', type: 'maven'
+     withSonarQubeEnv('Sonar-7')
+    {
+      sh "${mvnHome}/bin/mvn sonar:sonar"
+    }
+   }
+   
 }
 
 
