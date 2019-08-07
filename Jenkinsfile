@@ -1,16 +1,11 @@
-  node{
-   stage('SCM Checkout'){
-     git 'https://github.com/javahometech/my-app'
-   }
+node{
+  stage('SCM Checkout'){
+    git 'https://github.com/prasadkadam36/javahomecloud.git' 
+  }
    stage('Compile-Package'){
-    
-      def mvnHome =  tool name: 'maven-3', type: 'maven'   
-      sh "${mvnHome}/bin/mvn package"
+    sh 'mvn package'
    }
-    stage('Email Notification'){
-     mail bcc: '', body: 'Hello from Jenkins', cc: '', from: '', replyTo: '', subject: 'Jenkins Subject', to: 'prasadforplaystore@gmail.com' 
-    }
-   
 }
+
 
 
