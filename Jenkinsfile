@@ -1,4 +1,4 @@
-node{
+node ('linux_slave'){
   stage('SCM Checkout'){
     git 'https://github.com/prasadkadam36/javahomecloud.git' 
   }
