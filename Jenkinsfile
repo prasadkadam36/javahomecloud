@@ -29,11 +29,11 @@ node ('Linux_Slave'){
    }
   
    stage('Deploy to Tomcat'){
-       VERSION = sh label: '', returnStdout: true, script: '''cd /home/ansadmin/workspace/PipelineasCode
+       def VERSION = sh label: '', returnStdout: true, script: '''cd /home/ansadmin/workspace/PipelineasCode
                     cat pom.xml | grep version -m1 | awk -F ">" \'{print $2}\' | awk -F "<" \'{print $1}\''''
         sh label: '', script: '''cd /home/ansadmin/
 rm -rf *.war
-wget http://34.66.93.169:8081/repository/maven-releases/in/javahome/myweb/"${VERSION}"/myweb-"${VERSION}".war
+wget http://34.66.93.169:8081/repository/maven-releases/in/javahome/myweb/'${VERSION}'/myweb-'${VERSION}'.war
 mv myweb-$VERSION.war myweb.war
 scp -rp *.war ansadmin@10.128.0.13:/usr/share/tomcat/webapps
 '''
