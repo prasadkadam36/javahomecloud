@@ -31,6 +31,7 @@ node ('Linux_Slave'){
    stage('Deploy to Tomcat'){
        def VERSION = sh label: '', returnStdout: true, script: '''cd /home/ansadmin/workspace/PipelineasCode
                     cat pom.xml | grep version -m1 | awk -F ">" \'{print $2}\' | awk -F "<" \'{print $1}\''''
+     echo ${VERSION}
         sh label: '', script: '''cd /home/ansadmin/
 rm -rf *.war
 wget http://34.66.93.169:8081/repository/maven-releases/in/javahome/myweb/"${VERSION}"/myweb-"${VERSION}".war
