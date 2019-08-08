@@ -25,7 +25,7 @@ node ('Linux_Slave'){
       }        
     stage('Deploy to Nexus'){
        sh "cd /home/ansadmin/workspace/PipelineasCode"
-def VERSION = sh "cat pom.xml | grep version -m1 | awk -F ">" '{print $2}' | awk -F "<" '{print $1}'"
+def VERSION = sh "cat pom.xml | grep version -m1 | awk -F '>' '{print $2}' | awk -F '<' '{print $1}'"
       echo "${VERSION}"
     def mvnHome = tool name: 'apache-maven-3.5.4', type: 'maven'
       sh "${mvnHome}/bin/mvn deploy"
