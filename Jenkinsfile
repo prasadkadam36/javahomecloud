@@ -1,11 +1,5 @@
 properties([parameters([choice(choices: 'master\nfeature-1\nfeature-2', description: 'Select the branch to build', name: 'branch')])])
 node ('Linux_Slave'){
-  echo ""
-  environment {
-    //Use Pipeline Utility Steps plugin to read information from pom.xml into env variables
-    IMAGE = readMavenPom().getArtifactId()
-    VERSION = readMavenPom().getVersion()
-    }
   stage('SCM Checkout'){
     git url: 'https://github.com/prasadkadam36/javahomecloud.git', branch: "${params.branch}"
   }
@@ -30,8 +24,8 @@ node ('Linux_Slave'){
           }
       }        
     stage('Deploy to Nexus'){
-      VERSION = readMavenPom().getVersion()
-      echo "${VERSION}"
+       def pom = readMavenPom file: 'pom.xml'
+      echo "${pom.version}"
     def mvnHome = tool name: 'apache-maven-3.5.4', type: 'maven'
       sh "${mvnHome}/bin/mvn deploy"
    }
