@@ -35,7 +35,7 @@ cd /home/ansadmin/
 rm -rf *.war
 wget http://34.67.124.137:8081/repository/maven-releases/in/javahome/myweb/"${VERSION}"/myweb-"${VERSION}".war
 mv myweb-"${VERSION}".war myweb.war
-scp -rp *.war ansadmin@10.128.0.22:/usr/share/tomcat/webapps
+scp -rp *.war ansadmin@10.128.0.22:/home/ansadmin
 '''
         
    }
