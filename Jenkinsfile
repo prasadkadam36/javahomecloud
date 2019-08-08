@@ -30,6 +30,7 @@ node ('Linux_Slave'){
           }
       }        
     stage('Deploy to Nexus'){
+      VERSION = readMavenPom().getVersion()
       echo "${VERSION}"
     def mvnHome = tool name: 'apache-maven-3.5.4', type: 'maven'
       sh "${mvnHome}/bin/mvn deploy"
