@@ -1,5 +1,6 @@
 properties([parameters([choice(choices: 'master\nfeature-1\nfeature-2', description: 'Select the branch to build', name: 'branch')])])
 node ('master'){
+  //SCM Checkout
   stage('SCM Checkout'){
     git url: 'https://github.com/prasadkadam36/javahomecloud.git', branch: "${params.branch}"
   }
