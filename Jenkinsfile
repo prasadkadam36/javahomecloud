@@ -25,10 +25,10 @@ node ('Linux_Slave'){
       }        
     stage('Deploy to Nexus'){
        VERSION = sh label: '', returnStdout: true, script: '''cd /home/ansadmin/workspace/PipelineasCode
-cat pom.xml | grep version -m1 | awk -F ">" \'{print $2}\' | awk -F "<" \'{print $1}\''''
-      echo "${VERSION}"
-    def mvnHome = tool name: 'apache-maven-3.5.4', type: 'maven'
-      sh "${mvnHome}/bin/mvn deploy"
+                    cat pom.xml | grep version -m1 | awk -F ">" \'{print $2}\' | awk -F "<" \'{print $1}\''''
+        echo "${VERSION}"
+        def mvnHome = tool name: 'apache-maven-3.5.4', type: 'maven'
+        sh "${mvnHome}/bin/mvn deploy"
    }
    
 }
