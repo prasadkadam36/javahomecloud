@@ -29,7 +29,7 @@ node ('master'){
    }
   
    stage('Deploy to Tomcat'){
-       sh label: '', script: '''cd /home/ansadmin/workspace/PipelineasCode
+       sh label: '', script: '''cd /var/lib/jenkins/workspace/PipelineasCode
 VERSION=`cat pom.xml | grep version -m1 | awk -F ">" \'{print $2}\' | awk -F "<" \'{print $1}\'`
 cd /home/ansadmin/
 rm -rf *.war
