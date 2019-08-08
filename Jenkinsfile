@@ -1,6 +1,7 @@
+properties([parameters([choice(choices: 'master\nfeature-1\nfeature-2', description: 'Select the branch to build', name: 'branch')])])
 node ('Linux_Slave'){
   stage('SCM Checkout'){
-    git 'https://github.com/prasadkadam36/javahomecloud.git' 
+    git url: 'https://github.com/prasadkadam36/javahomecloud.git', branch: "${params.branch}"
   }
    stage('Compile-Package'){
     def mvnHome = tool name: 'apache-maven-3.5.4', type: 'maven'
