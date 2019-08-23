@@ -34,7 +34,7 @@ node ('master'){
 VERSION=`cat pom.xml | grep version -m1 | awk -F ">" \'{print $2}\' | awk -F "<" \'{print $1}\'`
 cd /home/ansadmin/
 rm -rf *.war
-wget http://34.67.124.137:8081/repository/maven-releases/in/javahome/myweb/"${VERSION}"/myweb-"${VERSION}".war
+wget http://104.198.67.176:8081/repository/maven-releases/in/javahome/myweb/"${VERSION}"/myweb-"${VERSION}".war
 mv myweb-"${VERSION}".war myweb.war
 scp -rp *.war ansadmin@10.128.0.22:/home/ansadmin
 '''
