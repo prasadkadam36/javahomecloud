@@ -1,7 +1,4 @@
-notify()
-	{
-	 emailext body: '${currentBuild.currentResult} : Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \\n More info at : ${env.BUILD_URL}', subject: 'Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}', to: 'prasadforplaystore@gmail.com'
-	}
+
   
 properties([parameters([choice(choices: 'master\nfeature-1\nfeature-2', description: 'Select the branch to build', name: 'branch')])])
 parameters {
@@ -133,5 +130,8 @@ node ('master'){
 
 }
 
-
+def notify()
+	{
+	 emailext body: '${currentBuild.currentResult} : Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \\n More info at : ${env.BUILD_URL}', subject: 'Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}', to: 'prasadforplaystore@gmail.com'
+	}
 
