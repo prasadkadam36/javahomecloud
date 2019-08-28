@@ -4,6 +4,12 @@ notify()
 	}
   
 properties([parameters([choice(choices: 'master\nfeature-1\nfeature-2', description: 'Select the branch to build', name: 'branch')])])
+parameters {
+        string(defaultValue: "develop", description: 'Branch Specifier', name: 'SPECIFIER')
+        booleanParam(defaultValue: false, description: 'Deploy to QA Environment ?', name: 'DEPLOY_QA')
+        booleanParam(defaultValue: false, description: 'Deploy to UAT Environment ?', name: 'DEPLOY_UAT')
+        booleanParam(defaultValue: false, description: 'Deploy to PROD Environment ?', name: 'DEPLOY_PROD')
+    }
 
 node ('master'){
   //SCM Checkout
@@ -17,6 +23,37 @@ node ('master'){
 				notify()
 			}
   }
+	stage('Deploy - QA') {
+            when {
+                expression {
+                    params.DEPLOY_QA == true
+                }
+            }
+            steps {
+                echo "Deploy to QA..."
+            }
+        }
+        stage('Deploy - UAT') {
+            when {
+                expression {
+                    params.DEPLOY_UAT == true
+                }
+            }
+            steps {
+                echo "Deploy to UAT..."
+            }
+        }
+        stage('Deploy - Production') {
+            when {
+                expression {
+                    params.DEPLOY_PROD == true
+                }
+            }
+            steps {
+                echo "Deploy to PROD..."
+            }
+        }
+    }
   
   
    stage('Compile-Package'){
@@ -69,7 +106,7 @@ node ('master'){
 			}
    }
   
-  
+ 
    stage('Deploy to Tomcat'){
      
 		try{
