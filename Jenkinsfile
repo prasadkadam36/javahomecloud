@@ -123,7 +123,7 @@ node ('master'){
 			{
        notify()
 			}
-   }
+   
   
    stage('Email Notification'){
 	
